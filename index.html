@@ -30,7 +30,6 @@
 
   .wrap { max-width: 680px; margin: 0 auto; }
 
-  /* ── Header ── */
   .hdr {
     display: flex; justify-content: space-between; align-items: flex-end;
     padding-bottom: 16px; margin-bottom: 28px;
@@ -45,14 +44,12 @@
   }
   #journalDate:focus { border-color: var(--border); background: var(--bg); color: var(--text); }
 
-  /* ── Card ── */
   .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 18px; overflow: hidden; }
   .clabel {
     font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
     color: var(--muted); padding: 8px 18px; background: var(--accent-bg); border-bottom: 1px solid var(--border);
   }
 
-  /* ── Field row ── */
   .field { display: grid; grid-template-columns: 120px 1fr; border-bottom: 1px solid var(--border); }
   .field:last-child { border-bottom: none; }
   .fl {
@@ -62,7 +59,6 @@
   }
   .fi { padding: 9px 14px; }
 
-  /* ── Inputs ── */
   input[type="number"], input[type="text"], textarea {
     font-family: var(--ui); font-size: 0.875rem; color: var(--text);
     background: transparent; border: 1px solid transparent; border-radius: 5px;
@@ -72,41 +68,22 @@
   input[type="number"]:focus,
   input[type="text"]:focus, textarea:focus { border-color: var(--border); background: var(--bg); }
   .time-input { max-width: 90px; font-family: var(--mono); letter-spacing: 0.04em; }
+  .score-input { max-width: 72px; }
   input[type="number"] { max-width: 80px; }
   textarea { min-height: 68px; line-height: 1.6; }
   textarea.tall { min-height: 104px; }
   textarea::placeholder, input::placeholder { color: #c4bdb5; font-style: italic; font-size: 0.82rem; }
 
-  .hint { font-size: 0.68rem; color: var(--muted); margin-top: 5px; line-height: 1.45; font-style: italic; }
-
-  /* ── 1–5 rating circles ── */
-  .rating { display: flex; gap: 5px; padding-top: 2px; }
-  .rating label { cursor: pointer; }
-  .rating input[type="radio"] { display: none; }
-  .rating label span {
-    display: flex; align-items: center; justify-content: center;
-    width: 27px; height: 27px; border-radius: 50%;
-    border: 1px solid var(--border); font-size: 0.78rem;
-    color: var(--muted); background: var(--bg);
-    transition: all 0.15s; user-select: none;
-  }
-  .rating label:hover span { border-color: var(--accent); color: var(--accent); }
-  .rating input[type="radio"]:checked + span { background: var(--accent); color: #fff; border-color: var(--accent); }
-
-  /* ── Y/N + inline extras ── */
   .yn-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
   .yn { display: flex; gap: 18px; }
   .yn label { display: flex; align-items: center; gap: 5px; font-size: 0.875rem; cursor: pointer; user-select: none; }
   .yn input[type="radio"] { width: auto; padding: 0; border: none; accent-color: var(--accent); cursor: pointer; }
   .mins-group { display: flex; align-items: center; gap: 5px; border-left: 1px solid var(--border); padding-left: 14px; }
-  .mins-group input[type="number"] { width: 60px; max-width: 60px; font-size: 0.875rem; padding: 3px 6px; }
   .mins-label { font-size: 0.78rem; color: var(--muted); }
 
-  /* ── Number + unit ── */
   .nrow { display: flex; align-items: center; gap: 6px; }
   .unit { font-size: 0.82rem; color: var(--muted); }
 
-  /* ── Supplement steppers ── */
   .supp-list { display: flex; flex-direction: column; }
   .supp-item { display: flex; align-items: center; gap: 10px; padding: 8px 2px; border-bottom: 1px solid var(--bg); }
   .supp-item:last-child { border-bottom: none; }
@@ -143,7 +120,6 @@
   .supp-reset { font-size: 0.65rem; color: var(--muted); background: none; border: none; cursor: pointer; padding: 4px 0 2px; text-decoration: underline; font-family: var(--ui); letter-spacing: 0; display: block; margin-top: 2px; }
   .supp-reset:hover { color: var(--accent); opacity: 1; transform: none; }
 
-  /* ── Buttons ── */
   .actions { display: flex; gap: 10px; margin: 22px 0 30px; }
   button {
     font-family: var(--ui); cursor: pointer; border: none; border-radius: 7px;
@@ -156,7 +132,6 @@
   .btn-o { background: transparent; color: var(--muted); border: 1px solid var(--border); }
   .btn-s { padding: 7px 14px; font-size: 0.78rem; background: var(--accent-bg); color: var(--accent); border: 1px solid var(--border); }
 
-  /* ── Output ── */
   .out-wrap { display: none; }
   .out-wrap.show { display: block; }
   .out-hdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
@@ -165,7 +140,6 @@
   .copy-ok { font-size: 0.68rem; color: var(--green); opacity: 0; transition: opacity 0.3s; pointer-events: none; }
   .copy-ok.show { opacity: 1; }
 
-  /* ── Vault ── */
   .vault-bar {
     display: flex; align-items: center; justify-content: space-between;
     margin-top: 10px; padding: 8px 14px;
@@ -209,31 +183,15 @@
     <div class="clabel">Day</div>
     <div class="field">
       <div class="fl">Intention</div>
-      <div class="fi"><input type="text" id="intention" placeholder="one sentence for the day"></div>
+      <div class="fi"><input type="text" id="intention"></div>
     </div>
     <div class="field">
       <div class="fl">Mood</div>
-      <div class="fi">
-        <div class="rating" id="moodRating">
-          <label><input type="radio" name="mood" value="1"><span>1</span></label>
-          <label><input type="radio" name="mood" value="2"><span>2</span></label>
-          <label><input type="radio" name="mood" value="3"><span>3</span></label>
-          <label><input type="radio" name="mood" value="4"><span>4</span></label>
-          <label><input type="radio" name="mood" value="5"><span>5</span></label>
-        </div>
-      </div>
+      <div class="fi"><input type="text" inputmode="decimal" id="mood" class="score-input"></div>
     </div>
     <div class="field">
       <div class="fl">Energy</div>
-      <div class="fi">
-        <div class="rating" id="energyRating">
-          <label><input type="radio" name="energy" value="1"><span>1</span></label>
-          <label><input type="radio" name="energy" value="2"><span>2</span></label>
-          <label><input type="radio" name="energy" value="3"><span>3</span></label>
-          <label><input type="radio" name="energy" value="4"><span>4</span></label>
-          <label><input type="radio" name="energy" value="5"><span>5</span></label>
-        </div>
-      </div>
+      <div class="fi"><input type="text" inputmode="decimal" id="energy" class="score-input"></div>
     </div>
   </div>
 
@@ -241,6 +199,10 @@
   <div class="card">
     <div class="clabel">Routine</div>
 
+    <div class="field">
+      <div class="fl">Wake</div>
+      <div class="fi"><input type="text" id="wake" class="time-input" placeholder="HH:MM" maxlength="5"></div>
+    </div>
     <div class="field">
       <div class="fl">OOB</div>
       <div class="fi"><input type="text" id="oob" class="time-input" placeholder="HH:MM" maxlength="5"></div>
@@ -250,63 +212,34 @@
       <div class="fi">
         <div class="yn-row">
           <input type="text" id="bedtime" class="time-input" placeholder="HH:MM" maxlength="5">
-          <label style="display:flex;align-items:center;gap:5px;font-size:0.78rem;color:var(--muted);cursor:pointer;margin-left:4px;">
-            <input type="checkbox" id="bedtime-approx" style="width:auto;border:none;padding:0;"> approx
-          </label>
           <div class="mins-group" style="border-left:none; padding-left:10px;">
             <span class="mins-label" style="margin-right:6px;">quality</span>
-            <div class="rating">
-              <label><input type="radio" name="sleep-quality" value="1"><span>1</span></label>
-              <label><input type="radio" name="sleep-quality" value="2"><span>2</span></label>
-              <label><input type="radio" name="sleep-quality" value="3"><span>3</span></label>
-              <label><input type="radio" name="sleep-quality" value="4"><span>4</span></label>
-              <label><input type="radio" name="sleep-quality" value="5"><span>5</span></label>
-            </div>
+            <input type="text" inputmode="decimal" id="sleep-quality" class="score-input">
           </div>
         </div>
       </div>
     </div>
     <div class="field">
-      <div class="fl">Notes</div>
-      <div class="fi"><textarea id="oob-notes" placeholder="one thought per line"></textarea></div>
+      <div class="fl">Sleep Notes</div>
+      <div class="fi"><textarea id="sleep-notes"></textarea></div>
     </div>
     <div class="field">
       <div class="fl">Dreams</div>
-      <div class="fi"><textarea id="dreams" placeholder="–"></textarea></div>
-    </div>
-
-    <div class="field">
-      <div class="fl">Stretch</div>
-      <div class="fi">
-        <div class="yn">
-          <label><input type="radio" name="stretch" value="Y"> Y</label>
-          <label><input type="radio" name="stretch" value="N"> N</label>
-        </div>
-      </div>
-    </div>
-    <div class="field">
-      <div class="fl">Notes</div>
-      <div class="fi"><textarea id="stretch-notes" placeholder="one thought per line"></textarea></div>
+      <div class="fi"><textarea id="dreams"></textarea></div>
     </div>
 
     <div class="field">
       <div class="fl">Meditate</div>
       <div class="fi">
-        <div class="yn-row">
-          <div class="yn">
-            <label><input type="radio" name="meditate" value="Y"> Y</label>
-            <label><input type="radio" name="meditate" value="N"> N</label>
-          </div>
-          <div class="mins-group">
-            <input type="number" id="meditate-mins" min="1" max="180" placeholder="–">
-            <span class="mins-label">min</span>
-          </div>
+        <div class="yn">
+          <label><input type="radio" name="meditate" value="Y"> Y</label>
+          <label><input type="radio" name="meditate" value="N"> N</label>
         </div>
       </div>
     </div>
     <div class="field">
       <div class="fl">Notes</div>
-      <div class="fi"><textarea id="meditate-notes" placeholder="one thought per line"></textarea></div>
+      <div class="fi"><textarea id="meditate-notes"></textarea></div>
     </div>
   </div>
 
@@ -315,23 +248,19 @@
     <div class="clabel">Nutrition</div>
     <div class="field">
       <div class="fl">Breakfast</div>
-      <div class="fi">
-        <textarea id="breakfast" class="tall"
-          placeholder="Muesli&#10;1 cup muesli, 1 tbsp chia seeds, 1 banana, 1 cup greek yoghurt&#10;&#10;Coffee&#10;long black"></textarea>
-        <div class="hint">Line 1: meal name &nbsp;·&nbsp; Line 2: ingredients, comma-separated &nbsp;·&nbsp; blank line between separate intakes</div>
-      </div>
+      <div class="fi"><textarea id="breakfast" class="tall"></textarea></div>
     </div>
     <div class="field">
       <div class="fl">Lunch</div>
-      <div class="fi"><textarea id="lunch" class="tall" placeholder="Meal name&#10;ingredient 1, ingredient 2, ingredient 3"></textarea></div>
+      <div class="fi"><textarea id="lunch" class="tall"></textarea></div>
     </div>
     <div class="field">
       <div class="fl">Dinner</div>
-      <div class="fi"><textarea id="dinner" class="tall" placeholder="Meal name&#10;ingredient 1, ingredient 2, ingredient 3"></textarea></div>
+      <div class="fi"><textarea id="dinner" class="tall"></textarea></div>
     </div>
     <div class="field">
       <div class="fl">Snacks</div>
-      <div class="fi"><textarea id="snacks" placeholder="Meal name&#10;ingredient 1, ingredient 2"></textarea></div>
+      <div class="fi"><textarea id="snacks"></textarea></div>
     </div>
     <div class="field">
       <div class="fl">Water</div>
@@ -356,7 +285,7 @@
     </div>
     <div class="field">
       <div class="fl">Notes</div>
-      <div class="fi"><textarea id="supplements-notes" placeholder="one thought per line"></textarea></div>
+      <div class="fi"><textarea id="supplements-notes"></textarea></div>
     </div>
   </div>
 
@@ -364,16 +293,25 @@
   <div class="card">
     <div class="clabel">Training</div>
     <div class="field">
-      <div class="fl">Gym</div>
-      <div class="fi"><textarea id="gym" class="tall" placeholder="What did you do?"></textarea></div>
+      <div class="fl">Stretch</div>
+      <div class="fi">
+        <div class="yn">
+          <label><input type="radio" name="stretch" value="Y"> Y</label>
+          <label><input type="radio" name="stretch" value="N"> N</label>
+        </div>
+      </div>
     </div>
     <div class="field">
       <div class="fl">Notes</div>
-      <div class="fi"><textarea id="gym-notes" placeholder="one thought per line"></textarea></div>
+      <div class="fi"><textarea id="stretch-notes"></textarea></div>
+    </div>
+    <div class="field">
+      <div class="fl">Gym Notes</div>
+      <div class="fi"><textarea id="gym-notes" class="tall"></textarea></div>
     </div>
   </div>
 
-  <!-- REFLECTIONS (Bilby, Bobu, Notes) -->
+  <!-- REFLECTIONS -->
   <div class="card">
     <div class="clabel">Reflections</div>
     <div class="field">
@@ -395,7 +333,6 @@
     <button class="btn-o" onclick="clearForm()">Clear</button>
   </div>
 
-  <!-- OUTPUT -->
   <div class="out-wrap" id="outWrap">
     <div class="out-hdr">
       <span class="out-lbl">Formatted Entry</span>
@@ -407,7 +344,6 @@
     </div>
     <div id="output"></div>
 
-    <!-- Vault save bar -->
     <div class="vault-bar">
       <div class="vault-status">
         <span class="vault-dot" id="vaultDot"></span>
@@ -425,11 +361,11 @@
 <script>
 // ─── Supplements ──────────────────────────────────────────────────────────────
 const SUPPS = [
-  { id: 'creatine',   name: 'Creatine',            dose: '5 g'     },
-  { id: 'vitc',       name: 'High Strength C',     dose: '1 g'     },
-  { id: 'magnesium',  name: 'Magnesium Glycinate', dose: '150 mg'  },
-  { id: 'vitd',       name: 'Vitamin D (D3)',      dose: '25 mcg'  },
-  { id: 'zinc',       name: 'Zinc',                dose: '25 mg'   },
+  { id: 'creatine',  name: 'Creatine',            dose: '5 g'    },
+  { id: 'vitc',      name: 'High Strength C',     dose: '1 g'    },
+  { id: 'magnesium', name: 'Magnesium Glycinate', dose: '300 mg' },
+  { id: 'vitd',      name: 'Vitamin D (D3)',      dose: '25 mcg' },
+  { id: 'zinc',      name: 'Zinc',                dose: '25 mg'  },
 ];
 const N_CUSTOM = 3;
 
@@ -486,6 +422,7 @@ function calcDose(doseStr, count) {
 const DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 function getDateStr() { const d = new Date(); return `${DAYS[d.getDay()]} ${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`; }
+
 // ─── Auto-colon for time inputs ───────────────────────────────────────────────
 document.querySelectorAll('.time-input').forEach(inp => {
   inp.addEventListener('input', function(e) {
@@ -499,12 +436,10 @@ document.querySelectorAll('.time-input').forEach(inp => {
   });
 });
 
-// ─── Y/N radio unselect (click selected option to deselect) ──────────────────
+// ─── Y/N radio unselect ───────────────────────────────────────────────────────
 document.querySelectorAll('.yn input[type="radio"]').forEach(radio => {
   radio.addEventListener('mousedown', function() {
-    if (this.checked) {
-      setTimeout(() => { this.checked = false; }, 0);
-    }
+    if (this.checked) setTimeout(() => { this.checked = false; }, 0);
   });
 });
 
@@ -514,15 +449,15 @@ dateInput.style.width = (dateInput.value.length + 1) + 'ch';
 dateInput.addEventListener('input', function() { this.style.width = Math.max(this.value.length + 1, 10) + 'ch'; });
 
 
-// ─── Sleep duration calculator ────────────────────────────────────────────────
-function sleepDuration(bed, oob) {
-  if (!bed || !oob) return null;
+// ─── Sleep duration ───────────────────────────────────────────────────────────
+function sleepDuration(bed, wake) {
+  if (!bed || !wake) return null;
   const [bh, bm] = bed.split(':').map(Number);
-  const [oh, om] = oob.split(':').map(Number);
-  let bedMins = bh * 60 + bm;
-  let oobMins = oh * 60 + om;
-  if (oobMins <= bedMins) oobMins += 24 * 60; // crossed midnight
-  const total = oobMins - bedMins;
+  const [wh, wm] = wake.split(':').map(Number);
+  let bedMins  = bh * 60 + bm;
+  let wakeMins = wh * 60 + wm;
+  if (wakeMins <= bedMins) wakeMins += 24 * 60;
+  const total = wakeMins - bedMins;
   const hrs   = Math.floor(total / 60);
   const mins  = total % 60;
   return mins === 0 ? `${hrs} hr${hrs !== 1 ? 's' : ''}` : `${hrs} hr${hrs !== 1 ? 's' : ''} ${mins} min`;
@@ -544,7 +479,7 @@ function toBullets(input) {
 }
 
 
-// ─── Diet alphabetising ───────────────────────────────────────────────────────
+// ─── Diet ─────────────────────────────────────────────────────────────────────
 const STRIP_UNITS = ['cups?','tbsps?','tablespoons?','tsps?','teaspoons?','mcg','g','kg','mg','ml','mL','L','oz','lbs?','pieces?','slices?','handfuls?','pinch(?:es)?','scoops?','cans?','bottles?','packets?','serves?','servings?','cloves?','sprigs?','stalks?','heads?','medium','large','small','whole','half','x'];
 const UNIT_RE = new RegExp('^(' + STRIP_UNITS.join('|') + ')\\s+', 'i');
 
@@ -595,103 +530,131 @@ function getSuppOutput() {
 }
 
 
-// ─── Output helpers ───────────────────────────────────────────────────────────
-function sec(label, val) { return val  ? `${label}:\n${val}` : `${label}:`; }
-function inl(label, val) { return val  ? `${label}: ${val}`  : `${label}:`; }
+// ─── Helpers ──────────────────────────────────────────────────────────────────
 function v(id)     { return document.getElementById(id).value.trim(); }
 function radio(nm) { const el = document.querySelector(`input[name="${nm}"]:checked`); return el ? el.value : null; }
 
 
-// ─── Main formatter ───────────────────────────────────────────────────────────
+// ─── Formatter ────────────────────────────────────────────────────────────────
 function formatJournal() {
-  const parts = [];
+  const p = [];
 
-  // Date
-  parts.push(v('journalDate') || getDateStr());
-  parts.push('');
+  p.push(v('journalDate') || getDateStr());
+  p.push('');
 
-  // Intention
-  const intention = v('intention');
-  parts.push(inl('INTENTION', intention ? clean(intention) : null));
-  parts.push('');
+  p.push('WAKE UP:');
+  const wake = v('wake');
+  if (wake) p.push(wake);
+  p.push('');
 
-  // Mood + Energy (blank line between them)
-  const mood   = radio('mood');
-  const energy = radio('energy');
-  parts.push(inl('MOOD',   mood   ? `${mood}/5`   : null));
-  parts.push('');
-  parts.push(inl('ENERGY', energy ? `${energy}/5` : null));
-  parts.push('');
-
-  // OOB + NOTES (before Sleep)
+  p.push('OOB:');
   const oob = v('oob');
-  parts.push(inl('OOB', oob || null));
-  parts.push(sec('NOTES', clean(v('oob-notes')) || null));
-  parts.push('');
+  if (oob) p.push(oob);
+  p.push('');
 
-  // Sleep
-  const bed       = v('bedtime');
-  const bedApprox = document.getElementById('bedtime-approx').checked;
-  const sleepQ    = radio('sleep-quality');
-  const dur       = sleepDuration(bed, oob);
-  let sleepVal    = null;
-  if (bed || sleepQ) {
-    const parts2 = [];
-    const bedStr = bed ? (bedApprox ? `~${bed}` : bed) : null;
-    if (bedStr && oob) parts2.push(`${bedStr}–${oob}`);
-    else if (bedStr)   parts2.push(bedStr);
-    if (dur)           parts2.push(`— ${dur}`);
-    if (sleepQ)        parts2.push(`— ${sleepQ}/5`);
-    sleepVal = parts2.join(' ') || null;
+  // Sleep block
+  const bed    = v('bedtime');
+  const sleepQ = v('sleep-quality');
+  p.push('SLEEP:');
+  if (bed || wake) {
+    p.push(`${bed ? '~' + bed : 'idk'}–${wake || 'idk'}`);
+    const dur = (bed && wake) ? sleepDuration(bed, wake) : null;
+    p.push(dur ? `~${dur}` : '—');
   }
-  parts.push(inl('SLEEP', sleepVal));
-  parts.push('');
+  if (sleepQ) p.push(`${sleepQ}/10`);
+  p.push('NOTES:');
+  const sleepNotes = toBullets(v('sleep-notes'));
+  if (sleepNotes) p.push(sleepNotes);
+  p.push('');
 
-  // Dreams (plain text)
+  p.push('DREAMS:');
   const dreams = v('dreams');
-  if (dreams) { parts.push(sec('DREAMS', clean(dreams))); parts.push(''); }
+  if (dreams) p.push(clean(dreams));
+  p.push('');
 
-  // STRETCH + NOTES
-  parts.push(inl('STRETCH', radio('stretch')));
-  parts.push(sec('NOTES', toBullets(v('stretch-notes'))));
-  parts.push('');
+  p.push('DAILY INTENTION:');
+  const intention = v('intention');
+  if (intention) p.push(clean(intention));
+  p.push('');
 
-  // MEDITATE + NOTES
-  const medYN   = radio('meditate');
-  const medMins = v('meditate-mins');
-  parts.push(inl('MEDITATE', medYN ? (medYN === 'Y' && medMins ? `Y — ${medMins} min` : medYN) : null));
-  parts.push(sec('NOTES', toBullets(v('meditate-notes'))));
-  parts.push('');
+  p.push('MOOD:');
+  const mood = v('mood');
+  if (mood) p.push(`${mood}/10`);
+  p.push('');
 
-  // Diet
-  for (const [label, id] of [['BREAKFAST','breakfast'],['LUNCH','lunch'],['DINNER','dinner'],['SNACKS','snacks']]) {
-    parts.push(sec(label, formatDiet(v(id))));
-    parts.push('');
+  p.push('ENERGY:');
+  const energy = v('energy');
+  if (energy) p.push(`${energy}/10`);
+  p.push('');
+
+  // Meditate block
+  p.push('MEDITATE:');
+  const medYN = radio('meditate');
+  if (medYN) p.push(medYN);
+  p.push('NOTES:');
+  const medNotes = toBullets(v('meditate-notes'));
+  if (medNotes) p.push(medNotes);
+  p.push('');
+
+  // Meals
+  for (const [label, id] of [['BREAKFAST','breakfast'],['LUNCH','lunch'],['DINNER','dinner']]) {
+    p.push(`${label}:`);
+    const meal = formatDiet(v(id));
+    if (meal) p.push(meal);
+    p.push('');
   }
 
-  // Water
-  parts.push(inl('WATER', v('water') ? `${v('water')} L` : null));
-  parts.push('');
+  // Snacks — simple bullets
+  p.push('SNACKS:');
+  const snacks = toBullets(v('snacks'));
+  if (snacks) p.push(snacks);
+  p.push('');
 
-  // Supplements + NOTES (bulleted list)
+  p.push('WATER:');
+  const water = v('water');
+  if (water) p.push(`${water} L`);
+  p.push('');
+
+  // Supplements block
+  p.push('SUPPLEMENTS:');
   const suppOut = getSuppOutput();
-  parts.push(suppOut ? `SUPPLEMENTS:\n${suppOut}` : 'SUPPLEMENTS:');
-  parts.push(sec('NOTES', toBullets(v('supplements-notes'))));
-  parts.push('');
+  if (suppOut) p.push(suppOut);
+  p.push('NOTES:');
+  const suppNotes = toBullets(v('supplements-notes'));
+  if (suppNotes) p.push(suppNotes);
+  p.push('');
 
-  // GYM + NOTES
-  parts.push(sec('GYM',   v('gym')      ? clean(v('gym'))      : null));
-  parts.push(sec('NOTES', toBullets(v('gym-notes'))));
-  parts.push('');
+  // Stretch block
+  p.push('STRETCH:');
+  const stretchYN = radio('stretch');
+  if (stretchYN) p.push(stretchYN);
+  p.push('NOTES:');
+  const stretchNotes = toBullets(v('stretch-notes'));
+  if (stretchNotes) p.push(stretchNotes);
+  p.push('');
 
-  // Reflections: Bilby → Bobu → Notes / Reflections
-  parts.push(sec('BILBY', v('bilby') ? clean(v('bilby')) : null));
-  parts.push('');
-  parts.push(sec('BOBU',  v('bobu')  ? clean(v('bobu'))  : null));
-  parts.push('');
-  parts.push(sec('NOTES / REFLECTIONS', v('reflections') ? clean(v('reflections')) : null));
+  // Gym block
+  p.push('GYM:');
+  p.push('NOTES:');
+  const gymNotes = toBullets(v('gym-notes'));
+  if (gymNotes) p.push(gymNotes);
+  p.push('');
 
-  document.getElementById('output').textContent = parts.join('\n');
+  p.push('BILBY:');
+  const bilby = v('bilby');
+  if (bilby) p.push(clean(bilby));
+  p.push('');
+
+  p.push('BOBU:');
+  const bobu = v('bobu');
+  if (bobu) p.push(clean(bobu));
+  p.push('');
+
+  p.push('NOTES / REFLECTIONS:');
+  const reflections = v('reflections');
+  if (reflections) p.push(clean(reflections));
+
+  document.getElementById('output').textContent = p.join('\n');
   const wrap = document.getElementById('outWrap');
   wrap.classList.add('show');
   setTimeout(() => wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
@@ -716,7 +679,7 @@ function exportTxt() {
 }
 
 
-// ─── Vault (File System Access API + IndexedDB) ───────────────────────────────
+// ─── Vault ────────────────────────────────────────────────────────────────────
 const DB_NAME = 'journal-vault', DB_VER = 1, STORE = 'settings';
 
 function openDB() {
@@ -760,13 +723,11 @@ function setVaultUI(name) {
   }
 }
 
-// Restore vault name on load
 dbGet('vaultName').then(name => { if (name) setVaultUI(name); }).catch(() => {});
 
 async function getVaultHandle() {
   const handle = await dbGet('vaultDir');
   if (!handle) return null;
-  // Check / request permission
   let perm = await handle.queryPermission({ mode: 'readwrite' });
   if (perm === 'prompt') perm = await handle.requestPermission({ mode: 'readwrite' });
   return perm === 'granted' ? handle : null;
@@ -792,17 +753,9 @@ function downloadMd(text, name) {
 async function saveToVault() {
   const text = document.getElementById('output').textContent.trim();
   if (!text) { alert('Format your entry first.'); return; }
-
   const name = mdFilename();
-
-  // Fallback: File System Access API not available (e.g. blocked by Brave)
-  if (typeof window.showDirectoryPicker !== 'function') {
-    downloadMd(text, name);
-    return;
-  }
-
+  if (typeof window.showDirectoryPicker !== 'function') { downloadMd(text, name); return; }
   let dirHandle = await getVaultHandle();
-
   if (!dirHandle) {
     try {
       dirHandle = await window.showDirectoryPicker({ mode: 'readwrite' });
@@ -814,10 +767,8 @@ async function saveToVault() {
       return;
     }
   }
-
-  const name2 = mdFilename();
   try {
-    const file     = await dirHandle.getFileHandle(name2, { create: true });
+    const file     = await dirHandle.getFileHandle(mdFilename(), { create: true });
     const writable = await file.createWritable();
     await writable.write(text);
     await writable.close();
@@ -826,7 +777,7 @@ async function saveToVault() {
     fb.classList.add('show');
     setTimeout(() => fb.classList.remove('show'), 2500);
   } catch (e) {
-    alert(`Could not write ${name2} — try clicking "change" to re-select the folder.\n\n${e.message}`);
+    alert(`Could not write file — try clicking "change" to re-select the folder.\n\n${e.message}`);
   }
 }
 
@@ -845,7 +796,7 @@ async function changeVault() {
 // ─── Clear ────────────────────────────────────────────────────────────────────
 function clearForm() {
   document.querySelectorAll('textarea, input[type="number"], input[type="text"]:not(#journalDate), .supp-name-input, .supp-dose-input').forEach(el => el.value = '');
-  document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(el => el.checked = false);
+  document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
   resetSupps();
   document.getElementById('journalDate').value = getDateStr();
   document.getElementById('outWrap').classList.remove('show');
