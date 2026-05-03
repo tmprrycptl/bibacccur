@@ -183,7 +183,7 @@
     <div class="clabel">Day</div>
     <div class="field">
       <div class="fl">Intention</div>
-      <div class="fi"><input type="text" id="intention"></div>
+      <div class="fi"><textarea id="intention"></textarea></div>
     </div>
     <div class="field">
       <div class="fl">Mood</div>
@@ -200,6 +200,10 @@
     <div class="clabel">Routine</div>
 
     <div class="field">
+      <div class="fl">IB</div>
+      <div class="fi"><input type="text" id="bedtime" class="time-input" placeholder="HH:MM" maxlength="5"></div>
+    </div>
+    <div class="field">
       <div class="fl">Wake</div>
       <div class="fi"><input type="text" id="wake" class="time-input" placeholder="HH:MM" maxlength="5"></div>
     </div>
@@ -208,20 +212,12 @@
       <div class="fi"><input type="text" id="oob" class="time-input" placeholder="HH:MM" maxlength="5"></div>
     </div>
     <div class="field">
-      <div class="fl">Bed</div>
-      <div class="fi">
-        <div class="yn-row">
-          <input type="text" id="bedtime" class="time-input" placeholder="HH:MM" maxlength="5">
-          <div class="mins-group" style="border-left:none; padding-left:10px;">
-            <span class="mins-label" style="margin-right:6px;">quality</span>
-            <input type="text" inputmode="decimal" id="sleep-quality" class="score-input">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="field">
       <div class="fl">Sleep Notes</div>
       <div class="fi"><textarea id="sleep-notes"></textarea></div>
+    </div>
+    <div class="field">
+      <div class="fl">Sleep Quality</div>
+      <div class="fi"><input type="text" inputmode="decimal" id="sleep-quality" class="score-input"></div>
     </div>
     <div class="field">
       <div class="fl">Dreams</div>
@@ -306,8 +302,8 @@
       <div class="fi"><textarea id="stretch-notes"></textarea></div>
     </div>
     <div class="field">
-      <div class="fl">Gym Notes</div>
-      <div class="fi"><textarea id="gym-notes" class="tall"></textarea></div>
+      <div class="fl">Training</div>
+      <div class="fi"><textarea id="training" class="tall"></textarea></div>
     </div>
   </div>
 
@@ -421,7 +417,7 @@ function calcDose(doseStr, count) {
 // ─── Date ─────────────────────────────────────────────────────────────────────
 const DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-function getDateStr() { const d = new Date(); return `${DAYS[d.getDay()]} ${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`; }
+function getDateStr() { const d = new Date(); return `${DAYS[d.getDay()]}, ${String(d.getDate()).padStart(2, '0')} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`; }
 
 // ─── Auto-colon for time inputs ───────────────────────────────────────────────
 document.querySelectorAll('.time-input').forEach(inp => {
@@ -633,11 +629,10 @@ function formatJournal() {
   if (stretchNotes) p.push(stretchNotes);
   p.push('');
 
-  // Gym block
-  p.push('GYM:');
-  p.push('NOTES:');
-  const gymNotes = toBullets(v('gym-notes'));
-  if (gymNotes) p.push(gymNotes);
+  // Training
+  p.push('TRAINING:');
+  const training = toBullets(v('training'));
+  if (training) p.push(training);
   p.push('');
 
   p.push('BILBY:');
